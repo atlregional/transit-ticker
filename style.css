@@ -1,0 +1,115 @@
+/*Paste whatever you have in the html into this file*/
+html, body {
+	margin:0px;
+	padding:0px;
+}
+#container {
+	width:1920px;
+	height:65px;	
+}
+
+.transit:after, .transit::after {
+    z-index: 1;
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 95px; height: 65px;
+    background-image:url(transit-icon.png);
+}
+
+/* Make it pretty */
+.transit {
+    padding-left: 1.5em;
+    position: relative;
+    font: 20px 'Segoe UI', Tahoma, Helvetica, Sans-Serif;
+	padding-top:17px;
+	font-weight: bold;
+	color: #eee;
+}
+
+/* Make it a marquee */
+.marquee {
+    width: 1920px; 
+    height:65px;
+	background-color:#556270;
+	background-image:url(bg-pattern.jpg);
+	background-repeat:repeat-x;
+    margin: 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-box-sizing: border-box;
+    -webkit-animation: marquee 30s linear infinite;
+}
+
+.marquee:hover {
+    -webkit-animation-play-state: paused;
+}
+
+/* Make it move */
+@-webkit-keyframes marquee {
+    0%   { text-indent: 27.5em }
+    100% { text-indent: -105em }
+}
+
+@keyframes marquee {
+    0%   { text-indent: 27.5em }
+    100% { text-indent: -105em }
+}
+
+.station {
+	color:#D6D6D6;
+	background-image:url(arrow-right.png);
+	background-repeat:no-repeat;
+	background-position:right 7px ;
+	padding-right:12px;
+	margin-right:20px;	
+}
+.dir, .route {
+	padding:1px 5px;
+	color:#eee;
+	line-height:1;
+	vertical-align:baseline;
+	white-space:nowrap;
+	text-align:center;
+	background-color:rgba(200,200,200,.5);
+	border-radius:5px;
+}
+.time {
+}
+
+.gold {
+	color:#ffe506;	
+	background-color:rgba(251,184,41,.5);
+	border-color:#eee;
+}
+
+.green {
+	color:#6abd48;	
+	background-color:rgba(59,134,134,.5);
+	border-color:#036564;
+}
+
+.blue {
+	color:#0093d0;
+	background-color:rgba(11,72,107,.5);
+	border-color:#031634;
+}
+
+.red {
+	color:#FBCFCF;
+	background-color:rgba(177,22,35,0.5);
+	border-color:#9F111B;
+}
+
+p.tou-statement {
+	position:absolute;
+	left:1600px; top:40px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#ccd0d4;	
+}
+
+img.qr-code {
+	position:absolute;
+	left:1825px; top:0px;
+}
