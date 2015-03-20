@@ -1,6 +1,19 @@
 
 
 $(document).ready(function(){
+	var qs = (function(a) {
+	    if (a == "") return {};
+	    var b = {};
+	    for (var i = 0; i < a.length; ++i)
+	    {
+	        var p=a[i].split('=');
+	        if (p.length != 2) continue;
+	        b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+	    }
+	    return b;
+	})(window.location.search.substr(1).split('&'));
+	// stations = qs['train'].split(' ');
+	console.log(qs);
 	var count = 0
 	// $('span.list').empty()
 	queryStops();
@@ -11,6 +24,9 @@ $(document).ready(function(){
 	},30000);
 
 })
+
+
+
 function queryStops(){
 	var stops = [
 		{
@@ -20,6 +36,10 @@ function queryStops(){
 		{
 			"id": "MARTA_908986",
 			"name": "Five Points"
+		},
+		{
+			"id": "MARTA_908696",
+			"name": "GSU"
 		}
 	]
 	$.each(stops, function(i, stop){
@@ -29,7 +49,7 @@ function queryStops(){
 }
 
 function queryStop(stop){
-	var url = 'http://onebusaway.gatech.edu/api/api/where/arrivals-and-departures-for-stop/'+stop.id+'.json?key=TEST&minutesAfter=14&minutesBefore=-1'
+	var url = 'http://onebusaway.gatech.edu/api/api/where/arrivals-and-departures-for-stop/'+stop.id+'.json?key=TEST&minutesAfter=20&minutesBefore=-8'
 	$.ajax({
 		type: "GET",
 		url: url,
@@ -50,7 +70,8 @@ function parseTime(stopName, arrivals){
 		var seconds = arrival.predictedArrivalTime || arrival.scheduledArrivalTime
 		var d = moment(seconds).format('h:mm');
 		var diff = seconds - moment().unix();
-		var fromNow = moment(seconds).fromNow()
+		var fromNow = moment(seconds).fromNow(true).replace('minutes', 'min');
+		// var fromNow = seconds/60 
 		var dir = arrival.tripHeadsign.split(' ')[1][0]	
 			
 		// if (arrival.numberOfStopsAway >= 0){
