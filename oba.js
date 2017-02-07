@@ -49,7 +49,7 @@ function queryStops(){
 }
 
 function queryStop(stop){
-	var url = 'http://onebusaway.gatech.edu/api/api/where/arrivals-and-departures-for-stop/'+stop.id+'.json?key=TEST&minutesAfter=20&minutesBefore=-8'
+	var url = 'http://atlanta.onebusaway.org/api/api/where/arrivals-and-departures-for-stop/'+stop.id+'.json?key=TEST&minutesAfter=20&minutesBefore=-8'
 	$.ajax({
 		type: "GET",
 		url: url,
@@ -71,9 +71,9 @@ function parseTime(stopName, arrivals){
 		var d = moment(seconds).format('h:mm');
 		var diff = seconds - moment().unix();
 		var fromNow = moment(seconds).fromNow(true).replace('minutes', 'min');
-		// var fromNow = seconds/60 
-		var dir = arrival.tripHeadsign.split(' ')[1][0]	
-			
+		// var fromNow = seconds/60
+		var dir = arrival.tripHeadsign.split(' ')[1][0]
+
 		// if (arrival.numberOfStopsAway >= 0){
 			// console.log(fromNow)
 			// console.log(moment(seconds).format("dddd, MMMM Do YYYY, h:mm:ss a"))
